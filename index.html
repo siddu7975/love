@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>For My Priya ❤️</title>
+
+<style>
+body{
+margin:0;
+font-family:Arial;
+text-align:center;
+background:linear-gradient(to right,#ff758c,#ff7eb3);
+color:white;
+overflow:hidden;
+}
+
+/* Intro */
+#intro{
+position:fixed;
+width:100%;
+height:100%;
+background:black;
+display:flex;
+justify-content:center;
+align-items:center;
+font-size:40px;
+animation:fadeOut 4s forwards 3s;
+}
+
+@keyframes fadeOut{
+to{opacity:0;visibility:hidden;}
+}
+
+.container{margin-top:15%;}
+
+button{
+padding:12px 25px;
+font-size:18px;
+border:none;
+border-radius:25px;
+background:white;
+color:#ff4b7d;
+cursor:pointer;
+margin:10px;
+}
+
+.hidden{display:none;}
+
+img{
+width:280px;
+height:350px;
+border-radius:20px;
+box-shadow:0 0 20px rgba(0,0,0,0.3);
+}
+
+/* Hearts */
+.heart{
+position:fixed;
+font-size:20px;
+animation:float 5s linear infinite;
+}
+
+@keyframes float{
+0%{transform:translateY(0);}
+100%{transform:translateY(-100vh);}
+}
+
+/* Fireworks */
+.firework{
+position:fixed;
+font-size:25px;
+animation:boom 1s ease-out forwards;
+}
+
+@keyframes boom{
+0%{opacity:1; transform:scale(0);}
+100%{opacity:0; transform:scale(3);}
+}
+</style>
+</head>
+
+<body>
+
+<!-- INTRO -->
+<div id="intro">
+Siddu ❤️ Priya
+</div>
+
+<!-- PASSWORD -->
+<div id="passwordPage" class="container">
+<h2>Enter Our Secret Code ❤️</h2>
+<input type="password" id="pass">
+<br><br>
+<button onclick="checkPass()">Enter</button>
+</div>
+
+<!-- MAIN PAGE -->
+<div id="mainPage" class="hidden">
+
+<h2 id="timer"></h2>
+
+<h1>Hey Priya ❤️</h1>
+
+<p id="story"></p>
+
+<img id="slide" src="p1.jpg">
+
+<br><br>
+
+<h2>Will You Be Mine Forever? 💖</h2>
+
+<button onclick="yesLove()">YES ❤️</button>
+<button onclick="noLove()">NO 😜</button>
+
+</div>
+
+<audio autoplay loop>
+<source src="music.mp3" type="audio/mpeg">
+</audio>
+
+<script>
+
+/* PASSWORD */
+function checkPass(){
+let p=document.getElementById("pass").value;
+
+if(p=="143"){
+document.getElementById("passwordPage").classList.add("hidden");
+document.getElementById("mainPage").classList.remove("hidden");
+typeStory();
+}
+else{
+alert("Wrong Code 😜");
+}
+}
+
+/* AUTO TYPING STORY */
+let msg="ನೀನು ನನ್ನ ಜೀವನಕ್ಕೆ ಬಂದ ನಂತರ ನನ್ನ ಜಗತ್ತು ಬದಲಾಗಿದೆ... ನಿನ್ನ ನಗು ನನ್ನ ಸಂತೋಷ... ನನಗೆ ನೀನು ತುಂಬಾ ಇಷ್ಟ ಪ್ರಿಯಾ ❤️";
+
+let i=0;
+
+function typeStory(){
+let story=document.getElementById("story");
+
+let typing=setInterval(()=>{
+if(i<msg.length){
+story.innerHTML+=msg.charAt(i);
+i++;
+}
+else clearInterval(typing);
+},70);
+}
+
+/* SLIDESHOW */
+let photos=["p1.jpg","p2.jpg","p3.jpg","p4.jpg","p5.jpg"];
+
+let index=0;
+
+setInterval(()=>{
+document.getElementById("slide").src=photos[index];
+index=(index+1)%photos.length;
+},3000);
+
+/* HEARTS */
+setInterval(()=>{
+let heart=document.createElement("div");
+heart.classList.add("heart");
+heart.innerHTML="❤️";
+heart.style.left=Math.random()*100+"vw";
+document.body.appendChild(heart);
+setTimeout(()=>heart.remove(),5000);
+},500);
+
+/* COUNTDOWN */
+let valentine=new Date("Feb 14 2026 00:00:00").getTime();
+
+setInterval(()=>{
+let now=new Date().getTime();
+let diff=valentine-now;
+
+let d=Math.floor(diff/(1000*60*60*24));
+let h=Math.floor((diff%(1000*60*60*24))/(1000*60*60));
+
+document.getElementById("timer").innerHTML=
+"Special Day Countdown: "+d+" Days "+h+" Hours ❤️";
+},1000);
+
+/* YES BUTTON */
+function yesLove(){
+alert("You Made Me Happiest Person ❤️");
+fireworks();
+}
+
+/* NO BUTTON */
+function noLove(){
+alert("Think Again 😜");
+}
+
+/* FIREWORKS */
+function fireworks(){
+for(let i=0;i<30;i++){
+let fw=document.createElement("div");
+fw.classList.add("firework");
+fw.innerHTML="💖";
+fw.style.left=Math.random()*100+"vw";
+fw.style.top=Math.random()*100+"vh";
+document.body.appendChild(fw);
+setTimeout(()=>fw.remove(),1000);
+}
+}
+
+</script>
+
+</body>
+</html>
