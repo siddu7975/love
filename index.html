@@ -88,7 +88,7 @@ Siddu ❤️ Priya
 
 <!-- PASSWORD -->
 <div id="passwordPage" class="container">
-<h2>Enter Our Secret Code ❤️</h2>
+<h2>Enter Secret Code ❤️</h2>
 <input type="password" id="pass">
 <br><br>
 <button onclick="checkPass()">Enter</button>
@@ -96,8 +96,6 @@ Siddu ❤️ Priya
 
 <!-- MAIN PAGE -->
 <div id="mainPage" class="hidden">
-
-<h2 id="timer"></h2>
 
 <h1>Hey Priya ❤️</h1>
 
@@ -114,11 +112,16 @@ Siddu ❤️ Priya
 
 </div>
 
-<audio autoplay loop>
+<audio id="bgmusic" loop>
 <source src="music.mp3" type="audio/mpeg">
 </audio>
 
 <script>
+
+/* Start music when screen clicked */
+document.body.addEventListener("click", function(){
+document.getElementById("bgmusic").play();
+});
 
 /* PASSWORD */
 function checkPass(){
@@ -134,7 +137,7 @@ alert("Wrong Code 😜");
 }
 }
 
-/* AUTO TYPING STORY */
+/* LOVE MESSAGE TYPING */
 let msg="ನೀನು ನನ್ನ ಜೀವನಕ್ಕೆ ಬಂದ ನಂತರ ನನ್ನ ಜಗತ್ತು ಬದಲಾಗಿದೆ... ನಿನ್ನ ನಗು ನನ್ನ ಸಂತೋಷ... ನನಗೆ ನೀನು ತುಂಬಾ ಇಷ್ಟ ಪ್ರಿಯಾ ❤️";
 
 let i=0;
@@ -151,7 +154,7 @@ else clearInterval(typing);
 },70);
 }
 
-/* SLIDESHOW */
+/* PHOTO SLIDESHOW */
 let photos=["p1.jpg","p2.jpg","p3.jpg","p4.jpg","p5.jpg"];
 
 let index=0;
@@ -170,20 +173,6 @@ heart.style.left=Math.random()*100+"vw";
 document.body.appendChild(heart);
 setTimeout(()=>heart.remove(),5000);
 },500);
-
-/* COUNTDOWN */
-let valentine=new Date("Feb 14 2026 00:00:00").getTime();
-
-setInterval(()=>{
-let now=new Date().getTime();
-let diff=valentine-now;
-
-let d=Math.floor(diff/(1000*60*60*24));
-let h=Math.floor((diff%(1000*60*60*24))/(1000*60*60));
-
-document.getElementById("timer").innerHTML=
-"Special Day Countdown: "+d+" Days "+h+" Hours ❤️";
-},1000);
 
 /* YES BUTTON */
 function yesLove(){
