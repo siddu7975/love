@@ -1,201 +1,281 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>For My Priya ❤️</title>
+<title>For My Ammu ❤️</title>
 
 <style>
+
 body{
 margin:0;
-font-family:Arial;
-text-align:center;
-background:linear-gradient(to right,#ff758c,#ff7eb3);
+font-family: Arial;
 color:white;
-overflow:hidden;
+text-align:center;
+background-size:cover;
+background-position:center;
+transition: background 2s;
 }
 
-/* Intro */
-#intro{
+/* PASSWORD BOX */
+#lock{
 position:fixed;
+top:0;
+left:0;
+width:100%;
+height:100%;
+background:black;
+display:flex;
+flex-direction:column;
+justify-content:center;
+align-items:center;
+}
+
+input{
+padding:10px;
+font-size:18px;
+}
+
+button{
+padding:10px 20px;
+font-size:18px;
+margin:10px;
+cursor:pointer;
+}
+
+/* HEART FLOAT */
+.heart{
+position:fixed;
+bottom:-10px;
+font-size:20px;
+animation: float 6s linear infinite;
+}
+
+@keyframes float{
+0%{transform:translateY(0);opacity:1;}
+100%{transform:translateY(-100vh);opacity:0;}
+}
+
+/* ROSE FALL */
+.petal{
+position:fixed;
+top:-10px;
+font-size:25px;
+animation: fall 8s linear infinite;
+}
+
+@keyframes fall{
+100%{transform:translateY(100vh);}
+}
+
+/* END SCREEN */
+.ending{
+position:fixed;
+top:0;
+left:0;
 width:100%;
 height:100%;
 background:black;
 display:flex;
 justify-content:center;
 align-items:center;
+flex-direction:column;
+}
+
+.neonText{
 font-size:40px;
-animation:fadeOut 4s forwards 3s;
+text-shadow:0 0 10px pink,0 0 20px pink;
 }
 
-@keyframes fadeOut{
-to{opacity:0;visibility:hidden;}
-}
-
-.container{margin-top:15%;}
-
-button{
-padding:12px 25px;
-font-size:18px;
-border:none;
-border-radius:25px;
-background:white;
-color:#ff4b7d;
-cursor:pointer;
-margin:10px;
-}
-
-.hidden{display:none;}
-
-img{
-width:280px;
-height:350px;
-border-radius:20px;
-box-shadow:0 0 20px rgba(0,0,0,0.3);
-}
-
-/* Hearts */
-.heart{
-position:fixed;
-font-size:20px;
-animation:float 5s linear infinite;
-}
-
-@keyframes float{
-0%{transform:translateY(0);}
-100%{transform:translateY(-100vh);}
-}
-
-/* Fireworks */
-.firework{
-position:fixed;
-font-size:25px;
-animation:boom 1s ease-out forwards;
-}
-
-@keyframes boom{
-0%{opacity:1; transform:scale(0);}
-100%{opacity:0; transform:scale(3);}
-}
 </style>
 </head>
 
 <body>
 
-<!-- INTRO -->
-<div id="intro">
-Siddu ❤️ Priya
-</div>
-
-<!-- PASSWORD -->
-<div id="passwordPage" class="container">
-<h2>Enter Secret Code ❤️</h2>
+<!-- PASSWORD SCREEN -->
+<div id="lock">
+<h2>Enter Secret Password ❤️</h2>
 <input type="password" id="pass">
-<br><br>
 <button onclick="checkPass()">Enter</button>
 </div>
 
-<!-- MAIN PAGE -->
-<div id="mainPage" class="hidden">
-
-<h1>Hey Priya ❤️</h1>
-
-<p id="story"></p>
-
-<img id="slide" src="p1.jpg">
-
-<br><br>
+<h1 id="typeText"></h1>
 
 <h2>Will You Be Mine Forever? 💖</h2>
 
 <button onclick="yesLove()">YES ❤️</button>
-<button onclick="noLove()">NO 😜</button>
+<button id="noBtn" onmouseover="moveNo()">NO 😜</button>
 
-</div>
+<div id="timer"></div>
 
+<!-- MUSIC -->
 <audio id="bgmusic" loop>
 <source src="music.mp3" type="audio/mpeg">
 </audio>
 
-<script>
+<audio id="heartbeat">
+<source src="heartbeat.mp3" type="audio/mpeg">
+</audio>
 
-/* Start music when screen clicked */
-document.body.addEventListener("click", function(){
-document.getElementById("bgmusic").play();
-});
+<script>
 
 /* PASSWORD */
 function checkPass(){
 let p=document.getElementById("pass").value;
 
-if(p=="143"){
-document.getElementById("passwordPage").classList.add("hidden");
-document.getElementById("mainPage").classList.remove("hidden");
-typeStory();
-}
-else{
-alert("Wrong Code 😜");
+if(p==="ammu123"){
+document.getElementById("lock").style.display="none";
+startLove();
+}else{
+alert("Wrong Password 😜");
 }
 }
 
-/* LOVE MESSAGE TYPING */
-let msg="ನೀನು ನನ್ನ ಜೀವನಕ್ಕೆ ಬಂದ ನಂತರ ನನ್ನ ಜಗತ್ತು ಬದಲಾಗಿದೆ... ನಿನ್ನ ನಗು ನನ್ನ ಸಂತೋಷ... ನನಗೆ ನೀನು ತುಂಬಾ ಇಷ್ಟ ಪ್ರಿಯಾ ❤️";
+/* START LOVE */
+function startLove(){
+
+document.getElementById("bgmusic").play();
+
+/* LOVE MESSAGE */
+let msg="ಅಮ್ಮು… ನನ್ನ ಜೀವನದಲ್ಲಿ ಪ್ರೀತಿ ಅಂದರೆ ಏನು ಅನ್ನೋದನ್ನ ನನಗೆ ಕಲಿಸಿದ ವ್ಯಕ್ತಿ ನೀನು… ನೀನು ಬಂದ ಮೇಲೆ ಪ್ರತಿದಿನವೂ ನಿನ್ನ ನೆನಪಿನಿಂದ ಆರಂಭವಾಗುತ್ತಿದೆ. ನಿನ್ನ ನಗು ನನ್ನ ದಿನದ ಬೆಳಕು… ನಿನ್ನ ನೆನಪು ನನ್ನ ರಾತ್ರಿ ನಕ್ಷತ್ರ. ನನಗೆ ನೀನು ತುಂಬಾ ಇಷ್ಟ ಪ್ರಿಯಾ ❤️";
 
 let i=0;
 
-function typeStory(){
-let story=document.getElementById("story");
-
-let typing=setInterval(()=>{
+function typing(){
 if(i<msg.length){
-story.innerHTML+=msg.charAt(i);
+document.getElementById("typeText").innerHTML+=msg.charAt(i);
 i++;
+setTimeout(typing,50);
 }
-else clearInterval(typing);
-},70);
 }
+typing();
 
-/* PHOTO SLIDESHOW */
-let photos=["p1.jpg","p2.jpg","p3.jpg","p4.jpg","p5.jpg"];
-
-let index=0;
-
-setInterval(()=>{
-document.getElementById("slide").src=photos[index];
-index=(index+1)%photos.length;
-},3000);
-
-/* HEARTS */
+/* HEART FLOAT */
 setInterval(()=>{
 let heart=document.createElement("div");
-heart.classList.add("heart");
+heart.className="heart";
 heart.innerHTML="❤️";
-heart.style.left=Math.random()*100+"vw";
+heart.style.left=Math.random()*100+"%";
 document.body.appendChild(heart);
-setTimeout(()=>heart.remove(),5000);
+setTimeout(()=>heart.remove(),6000);
 },500);
+
+/* ROSE FALL */
+setInterval(()=>{
+let p=document.createElement("div");
+p.className="petal";
+p.innerHTML="🌹";
+p.style.left=Math.random()*100+"%";
+document.body.appendChild(p);
+setTimeout(()=>p.remove(),8000);
+},1200);
+
+/* BACKGROUND SLIDESHOW */
+let photos=["photo1.jpg","photo2.jpg","photo3.jpg","photo4.jpg"];
+let x=0;
+
+setInterval(()=>{
+document.body.style.backgroundImage=`url(${photos[x]})`;
+x=(x+1)%photos.length;
+},4000);
+
+/* LOVE TIMER */
+let loveDate=new Date("2024-01-01");
+
+setInterval(()=>{
+let now=new Date();
+let diff=now-loveDate;
+let days=Math.floor(diff/(1000*60*60*24));
+document.getElementById("timer").innerHTML="❤️ Loving You Since "+days+" Days ❤️";
+},1000);
+
+}
+
+/* NO BUTTON ESCAPE */
+function moveNo(){
+let btn=document.getElementById("noBtn");
+btn.style.position="absolute";
+btn.style.left=Math.random()*80+"%";
+btn.style.top=Math.random()*80+"%";
+}
+
+/* FIREWORK */
+function fireworkEffect(){
+for(let i=0;i<20;i++){
+let f=document.createElement("div");
+f.innerHTML="✨";
+f.style.position="fixed";
+f.style.left=Math.random()*100+"%";
+f.style.top=Math.random()*100+"%";
+f.style.fontSize="30px";
+document.body.appendChild(f);
+setTimeout(()=>f.remove(),1000);
+}
+}
+
+/* ROMANTIC END */
+function romanticEnding(){
+let music=document.getElementById("bgmusic");
+let beat=document.getElementById("heartbeat");
+
+let fade=setInterval(()=>{
+if(music.volume>0.1){
+music.volume-=0.1;
+}else{
+clearInterval(fade);
+music.pause();
+beat.play();
+}
+},300);
+}
+
+/* ENDING SCREEN */
+function endingScene(){
+document.body.innerHTML=`
+<div class="ending">
+<h1 class="neonText">Siddu ❤️ Priya</h1>
+<h2>Our Love Story Begins Forever 💖</h2>
+</div>`;
+}
+
+/* RING PROPOSAL */
+function ringProposal(){
+document.body.innerHTML=`
+<div class="ending">
+<h1>💍</h1>
+<h2>Will You Marry Me Someday? ❤️</h2>
+</div>`;
+}
+
+/* LOVE CERTIFICATE */
+function loveCertificate(){
+document.body.innerHTML=`
+<div class="ending">
+<h1>❤️ LOVE CERTIFICATE ❤️</h1>
+<h2>Siddu 💖 Priya</h2>
+<p>Officially Bound By Love</p>
+<p>${new Date().toDateString()}</p>
+</div>`;
+}
 
 /* YES BUTTON */
 function yesLove(){
-alert("You Made Me Happiest Person ❤️");
-fireworks();
-}
 
-/* NO BUTTON */
-function noLove(){
-alert("Think Again 😜");
-}
+fireworkEffect();
+romanticEnding();
 
-/* FIREWORKS */
-function fireworks(){
-for(let i=0;i<30;i++){
-let fw=document.createElement("div");
-fw.classList.add("firework");
-fw.innerHTML="💖";
-fw.style.left=Math.random()*100+"vw";
-fw.style.top=Math.random()*100+"vh";
-document.body.appendChild(fw);
-setTimeout(()=>fw.remove(),1000);
-}
+setTimeout(()=>{
+endingScene();
+
+setTimeout(()=>{
+ringProposal();
+
+setTimeout(()=>{
+loveCertificate();
+},6000);
+
+},4000);
+
+},1000);
+
 }
 
 </script>
